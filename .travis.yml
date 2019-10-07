@@ -13,3 +13,10 @@ after_success:
   - docker build -t jelenat/multi-nginx ./nginx
   - docker build -t jelenat/multi-server ./server
   - docker build -t jelenat/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push jelenat/multi-client
+  - docker push jelenat/multi-nginx
+  - docker push jelenat/multi-server
+  - docker push jelenat/multi-worker
